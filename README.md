@@ -1,5 +1,5 @@
-#ntok smart contract
-####Ethereum ERC20 token
+# ntok smart contract
+#### Ethereum ERC20 token
 
 
 
