@@ -9,24 +9,25 @@ import "./openzeppelin-solidity/ownership/Claimable.sol";
  * @title TutorNinjaToken
  * @dev ERC20 Token on OpenZeppelin framework
  */
-contract TutorNinjaToken is Distributable, BurnableToken, CanReclaimToken, Claimable {
+contract NTOKTokenContract is Distributable, BurnableToken, CanReclaimToken, Claimable {
 
     string public name;
     string public symbol;
     uint8 public decimals;
 
-    uint256 public INITIAL_SUPPLY = 33e6 * (10 ** uint256(decimals));
+    uint256 public INITIAL_SUPPLY;
 
     /**
      * @dev Constructor that gives msg.sender all of existing tokens.
      */
     constructor()
     public
-    DateKernel(now + (4*30*1 days))
+    DateKernel(1541030400)
     {
-        name = "Tutor Ninja"; // solium-disable-line uppercase
+        name = "NTOK Token Contract"; // solium-disable-line uppercase
         symbol = "NTOK"; // solium-disable-line uppercase
-        decimals = 10; // solium-disable-line uppercase
+        decimals = 18; // solium-disable-line uppercase
+        INITIAL_SUPPLY = 33000000 * 10 ** uit256(decimals);
         totalSupply_ = INITIAL_SUPPLY;
         balances[msg.sender] = INITIAL_SUPPLY;
         emit Transfer(address(0), msg.sender, INITIAL_SUPPLY);

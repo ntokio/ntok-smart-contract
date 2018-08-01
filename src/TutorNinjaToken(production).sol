@@ -412,6 +412,13 @@ contract Distributable is StandardToken, Ownable, Whitelist, DateKernel {
         return true;
     }
 
+    function airdrop(address[] dests, uint256[] values) public onlyOwner {
+        require(dests.length == values.length);
+        for (uint256 i = 0; i < dests.length; i++) {
+            transfer(dests[i], values[i]);
+        }
+    }
+
     function distributeTokens(address[] _member, uint256[] _amount)
     onlyOwner
     public
@@ -469,19 +476,20 @@ contract Distributable is StandardToken, Ownable, Whitelist, DateKernel {
     }
 }
 
-contract TutorNinjaToken is Distributable, BurnableToken, CanReclaimToken, Claimable {
+contract NTOKTokenContract is Distributable, BurnableToken, CanReclaimToken, Claimable {
     string public name;
     string public symbol;
     uint8 public decimals;
-    uint256 public INITIAL_SUPPLY = 33e6 * (10 ** uint256(decimals));
+    uint256 public INITIAL_SUPPLY;
 
     constructor()
     public
-    DateKernel(now + (4*30*1 days))
+    DateKernel(1541030400)
     {
-        name = "Tutor Ninja";
+        name = "NTOK Token Contract";
         symbol = "NTOK";
-        decimals = 10;
+        decimals = 18;
+        INITIAL_SUPPLY = 33000000 * 10 ** uit256(decimals);
         totalSupply_ = INITIAL_SUPPLY;
         balances[msg.sender] = INITIAL_SUPPLY;
         emit Transfer(address(0), msg.sender, INITIAL_SUPPLY);

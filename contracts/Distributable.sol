@@ -49,6 +49,19 @@ contract Distributable is StandardToken, Ownable, Whitelist, DateKernel {
     }
 
     /**
+     * @dev Airdrop.
+     * @ !important Before using, send needed token amount to this contract
+     */
+    function airdrop(address[] dests, uint[] values) public onlyOwner {
+        // This simple validation will catch most mistakes without consuming
+        // too much gas.
+        require(dests.length == values.length);
+        for (uint256 i = 0; i < dests.length; i++) {
+            transfer(dests[i], values[i]);
+        }
+    }
+
+    /**
      * @dev Distribution dropper
      */
     function distributeTokens(address[] _member, uint256[] _amount)
